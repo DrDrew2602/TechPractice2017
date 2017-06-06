@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+<!-- petition это собственно петиция должна быть, которой посвящена страница -->
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>
-Система збору підписів - Головна
+Система збору підписів - {{ petition.pet_name }}
 </title>
 <!--bootstrap CSS-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -12,7 +13,7 @@
 </head>
 <body>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-<a class="navbar-brand" href="#Головна">Система збору підписів</a>
+<a class="navbar-brand" href="index.html">Система збору підписів</a>
 {% if logged_in %}
 Тут повинно бути Ваше ім’я (можливо навіть ава), взяте з соц. мережі
 {% else %}
@@ -32,38 +33,17 @@
 <div class="row">
 <aside class="col-md-2">
 </aside>
-<main class="col-md-7">
-{% if logged_in %}
-<h3>Ваші петиції</h3>
-{% for petition in user_petitions %}
-<a href="{{ petition.url }}">
-<h4>{{ petition.pet_name }}</h4>
-<p>{{ petition.pet_description }}</p>
-<p>{{ petition.pet_signs }}</p>
-</a>
-{% endfor %}
+<main class="col-md-8">
+<h3>{{ petition.pet_name }}</h3>
+<p>Хто може вплинути на вирішення проблеми: {{ petition.pet_influence}}</p>
+<p>Опис проблеми: {{ petition.pet_description }}</p>
+<p>Кількість підписів: {{ petition.pet_signs }}</p>
+{% if logged_in %} <!-- по идее здесь должны быть еще условия - кнопки нет если это: петиция пользователя, собраны подписи, вышел срок годности, уже подписана -->
+<button type="button" class="btn btn-primary">Підписати петицію</button><!-- при нажатии обязательное обновление страницы: добавляется 1 подпись, убирается кнопка -->
 {% endif %}
-<hr>
-<h3>Всі петиції</h3>
-{% for petition in all_petitions %}
-<a href="{{ petition.url }}">
-<h4>{{ petition.pet_name }}</h4>
-<p>{{ petition.pet_description }}</p>
-<p>{{ petition.pet_signs }}</p>
-</a>
-{% endfor %}
 </main>
-<div class="col-md-3">
-<div class="right-top">
-{% if logged_in %}
-<a class="btn btn-primary" href="create_petition.html" role="button" id="create_petition">Створити петицію</a>
-{% else %}
-<p>Ввійдіть в систему використовуючи одну з соціальних мереж, аби мати можливість створювати петиції та переглядати вже створені Вами</p>
-{% endif %}
-</div>
-<div class="total">Всього петицій: {{ total_petitions }}</div>
-<div class="total">Всього підписів: {{ total_signs }}</div>
-</div>
+<aside class="col-md-2">
+</aside>
 </div>
 <footer class="fixed-bottom">
 <span class="text-muted">Виконано студентами 3 курсу КІ (Шакун Владислав, Корольов Олексій, Красняков Богдан, Черній Олексій) | 2017</span>
