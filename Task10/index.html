@@ -27,15 +27,15 @@
 </nav>
 <div class="row">
 <aside class="col-md-3">
-Менюшка
+Менюшка (а нужна ли?)
 </aside>
 <main class="col-md-6">
-Петиции на подпись
+ВСЕ ПЕТИЦИИ
 </main>
 <div class="col-md-3">
 <div class="right-top">
 {% if logged_in %}
-<button type="button" class="btn btn-primary" id="create_petition">Створити петицію</button>
+<a class="btn btn-primary" href="create_petition.html" role="button" id="create_petition">Створити петицію</a>
 {% else %}
 <p>Ввійдіть в систему використовуючи одну з соціальних мереж, аби мати можливість створювати петиції та переглядати вже створені Вами</p>
 {% endif %}
