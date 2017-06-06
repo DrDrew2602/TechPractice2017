@@ -12,13 +12,16 @@
 </head>
 <body>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-<a class="navbar-brand" href="#">Система збору підписів</a>
+<a class="navbar-brand" href="#Головна">Система збору підписів</a>
 <ul class="nav navbar-toggler-right">
   <li class="nav-item">
-    <a class="nav-link" href="#">Логін</a>
+    <a class="nav-link" href="#"><img src="images/facebook.svg"></a><!-- Пока ссылки в списке а там посмотрим -->
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Регістрація</a>
+    <a class="nav-link" href="#"><img src="images/github.svg"></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#"><img src="images/google_plus.svg"></a>
   </li>
 </ul>
 </nav>
@@ -30,11 +33,19 @@
 Петиции на подпись
 </main>
 <div class="col-md-3">
-Добавить петицию, всего петиций, всего подписей
+<div class="right-top">
+{% if logged_in %}
+<button type="button" class="btn btn-primary" id="create_petition">Створити петицію</button>
+{% else %}
+<p>Ввійдіть в систему використовуючи одну з соціальних мереж, аби мати можливість створювати петиції та переглядати вже створені Вами</p>
+{% endif %}
+</div>
+<div class="total">Всього петицій: {{total_petitions}}</div>
+<div class="total">Всього підписів: {{total_signs}}</div>
 </div>
 </div>
 <footer class="fixed-bottom">
-<span class="text-muted">Виконано студентами 3 курсу КІ (Шакун Владислав, Корольов Олексій, Красняков Богдан) | 2017</span>
+<span class="text-muted">Виконано студентами 3 курсу КІ (Шакун Владислав, Корольов Олексій, Красняков Богдан, Черній Олексій) | 2017</span>
 </footer>
 <!--bootstrap JS-->
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>

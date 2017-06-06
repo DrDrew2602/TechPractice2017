@@ -1,0 +1,15 @@
+body {
+	overflow-x: hidden;
+}
+
+div .right-top {
+	margin: 10px;
+	margin-top: 50px;
+}
+
+div .total {
+	display: inline-block;
+	width: 90%;
+	margin: 10px;
+	font-size: 15px;
+}
