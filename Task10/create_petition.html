@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>
-Система збору підписів - Головна
+Система збору підписів - Створення петиції
 </title>
 <!--bootstrap CSS-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -12,7 +12,7 @@
 </head>
 <body>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-<a class="navbar-brand" href="#Головна">Система збору підписів</a>
+<a class="navbar-brand" href="index.html">Система збору підписів</a>
 {% if logged_in %}
 Тут повинно бути Ваше ім’я (можливо навіть ава), взяте з соц. мережі
 {% else %}
@@ -32,32 +32,23 @@
 <div class="row">
 <aside class="col-md-2">
 </aside>
-<main class="col-md-7">
+<main class="col-md-8">
 {% if logged_in %}
-<h3>Ваші петиції</h3>
-{% for petition in user_petitions %}
-<h4>{{ petition.pet_name }}</h4>
-<p>{{ petition.pet_description }}</p>
-{% endfor %}
-{% endif %}
-<hr>
-<h3>Всі петиції</h3>
-{% for petition in user_petitions %}
-<h4>{{ petition.pet_name }}</h4>
-<p>{{ petition.pet_description }}</p>
-{% endfor %}
-</main>
-<div class="col-md-3">
-<div class="right-top">
-{% if logged_in %}
-<a class="btn btn-primary" href="create_petition.html" role="button" id="create_petition">Створити петицію</a>
+<form name="create_form" method="post">
+<p>Назва петиції:</p>
+<p><input type="text" size="100" name="pet_name"></p>
+<p>Хто може вплинути на вирішення проблеми:</p>
+<p><input type="text" size="100" name="pet_influence"></p>
+<p>Опис проблеми:</p>
+<p><textarea name="pet_description" cols="102" rows="5"></textarea></p>
+<p><input class="btn btn-primary" type="submit" name="create_button" value="Створити петицію"></p>
+</form>
 {% else %}
-<p>Ввійдіть в систему використовуючи одну з соціальних мереж, аби мати можливість створювати петиції та переглядати вже створені Вами</p>
+Для створення петиції потрібно увійти на сайт
 {% endif %}
-</div>
-<div class="total">Всього петицій: {{total_petitions}}</div>
-<div class="total">Всього підписів: {{total_signs}}</div>
-</div>
+</main>
+<aside class="col-md-2">
+</aside>
 </div>
 <footer class="fixed-bottom">
 <span class="text-muted">Виконано студентами 3 курсу КІ (Шакун Владислав, Корольов Олексій, Красняков Богдан, Черній Олексій) | 2017</span>
