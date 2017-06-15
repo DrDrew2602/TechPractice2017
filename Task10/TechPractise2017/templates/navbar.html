@@ -1,0 +1,43 @@
+<!-- Static navbar -->
+
+{% load static %}
+
+    <nav class="navbar navbar-default navbar-main">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Сайт петиций</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              {% if nick %}
+              <li><a href="/new_petition/">Создать петицию</a></li>
+              <li><a href="/my_petitions/">Мои петиции</a></li>
+              {% endif %}
+              <li><a href="/petitions_more_than_200/">Петиции на рассмотрении</a></li>
+              <li><a href="#Всего петиций">Всего петиций: {{ total_petitions }}</a></li>
+              <li><a href="#Всего подписей">Всего подписей: {{ total_signs }}</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+            <div id="user-tools" style="padding: 15px;">
+
+                {% if nick %}
+                    Добро пожаловать,
+                <strong>{{ nick }}</strong>.
+                <a href="/logout/">Выйти</a>
+                {% else %}
+                <a href="/login/">Войти</a>
+                {% endif %}
+        </div>
+            </li>
+          {% if not nick %}
+            <li>
+                <div class="register-container">
+                    <a href="{% url 'registration'  %}">Регистрация</a>
+                </div>
+            </li>
+          {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>

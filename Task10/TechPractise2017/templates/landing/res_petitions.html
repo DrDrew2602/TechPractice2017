@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="section section1">
+        <div class="container">{% csrf_token %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        Петиции на рассмотрении
+                    </h1>
+                </div>
+                <div class="row" >
+                <h5 class="text-center">
+                        <span class="text-center" >(Петиции у которых больше чем 200 голосов) </span>
+                    </h5>
+                </div>
+                {% for product in products %}
+                    {% include 'landing/petition_item.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="text-center">
+                    {{ product.name }}
+                </h1>
+                <p>
+                    Категория: {{ product.category }}
+                </p>
+                <div>
+                    {{ product.description }}
+                </div>
+                <div>
+                    <form id="form_buying_product" class="form-horizontal" >{% csrf_token %}
+                        <div class="form-group">
+                            <form method="post" action="/vote/{{ product.id }}/"> {% csrf_token %}
+                                {% if nick %}
+                                    <button type="submit" class="btn btn-success">
+                                        Подписать петицию
+                                    </button>
+                                {% endif %}
+                            </form>
+                            Подписей: {{ product.countVoice }}
+                        </div>
+                    </form>
+                    <div class="container">
+                        <div class="row">
+                            <form class="form-horizontal" method="post">{% csrf_token %}
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <div class="col-lg-6">
+                                            {% for c in comment %}
+                                                <form class="form-row">
+                                                    <label>Комментарий, {{ c.user.first_name }}</label>
+                                                    <span class="form-error">{{ form.description.errors }}</span>
+                                                    <data value="{{ c.description }}"  >
+                                                        {{ c.description }}
+                                                    </data>
+                                                </form>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% if nick %}
+                                        <div class="form-group">
+                                            <div class="col-lg-6">
+                                                <label>Ваш комментарий, {{ nick }}</label>
+                                                <span class="form-error">{{ form.description.errors }}</span>
+                                                <textarea rows="5" name="{{ form.description.html_name }}" class="form-control"
+                                                          value="{{ form.description }}">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-lg">Добавить комментарий</button>
+                                    {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
